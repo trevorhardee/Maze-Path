@@ -244,7 +244,7 @@ export default class PathFinder extends Component{
                 searchCalled = true;
                 setTimeout(() => {
                     this.initiateAStar(); document.getElementById("searchDropdown").classList.toggle("show");
-                }, 10500);
+                }, 9500);
             }
         }
         
