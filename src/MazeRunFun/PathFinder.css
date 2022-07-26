@@ -97,6 +97,7 @@
 
 .showInstructions{
     display: none;
+    text-overflow: ellipsis;
 }
 
 .close{
