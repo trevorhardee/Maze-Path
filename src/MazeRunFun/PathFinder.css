@@ -2,14 +2,14 @@
     display: grid;
     grid-template-rows: repeat(18, 25px);
     grid-template-columns: repeat(50, 25px);
-    margin: 100px 70px;
+    margin: 8% 70px;
 }
 
 .button, .searchButton {
     background-color: #495867; 
     float: right;
     color: white;
-    padding: 10px 5%;
+    padding: 0 3%;
     border: none;
     text-align: center;
     cursor: pointer;
@@ -20,7 +20,7 @@
     background-color: #495867; 
     float: left;
     color: white;
-    padding: 0px 5%;
+    padding: 0 3%;
     border: none;
     text-align: center;
     cursor: pointer;
