@@ -1,0 +1,113 @@
+.grid {
+    display: grid;
+    grid-template-rows: repeat(18, 25px);
+    grid-template-columns: repeat(50, 25px);
+    margin: 100px 70px;
+}
+
+.button, .searchButton {
+    background-color: #495867; 
+    float: right;
+    color: white;
+    padding: 10px 25px;
+    border: none;
+    text-align: center;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.headerButton {
+    background-color: #495867; 
+    float: left;
+    color: white;
+    padding: 0px 25px;
+    border: none;
+    text-align: center;
+    cursor: pointer;
+    font-size: 32px;
+}
+
+.button:hover, .button:focus, .searchButton:hover, .searchButton:focus, .headerButton:hover, .headerButton:focus{
+    color: #2980B9;
+}
+
+.dropdown{
+    float: right;
+    position: relative;
+    margin-top: auto;
+}
+
+/* Hide Search Content by default */
+.searches{
+    display: none;
+    position: fixed;
+    top: 70px;
+    left: 15/16fr;
+    background-color: #94A3B3;
+    min-width: auto;
+    overflow: auto;
+    font-size: 16px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    right: 0;
+    z-index: 1;
+}
+
+/* Links in search dropdown */
+.searches a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.searches a:hover{
+    color: #2980B9;
+}
+
+.show{
+    display: inline-block;
+}
+
+.header{
+    margin-left: auto;
+    background-color: #495867;
+    color: white;
+    border: 50px solid #495867;
+}
+
+#instructions{
+    position: absolute;
+    z-index: 3;
+    background-color: white;
+    text-align: center;
+    width: 50%;
+    height: 70%;
+    border: 2px solid #1ac8ed;
+    border-radius: 3px;
+    float: right;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.showInstructions{
+    display: none;
+}
+
+.close{
+    float: right;
+    border: none;
+    text-align: center;
+    cursor: pointer;
+    background-color: white;
+}
+.close:hover {
+    background-color: #2980B9;
+}
+  
+  
