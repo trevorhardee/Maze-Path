@@ -13,6 +13,7 @@ var FINISH_ROW;
 var FINISH_COL;
 var mazeDrawn = false;
 var searchCalled = false;
+var mazeFinished = false;
 
 
 
@@ -121,27 +122,32 @@ export default class PathFinder extends Component{
     }
     
     animatePathfinder(orderedVisitedNodes, orderedShortestPath){
-        for(let i = 0; i <=orderedVisitedNodes.length; i++){
-            if(i === orderedVisitedNodes.length){
+        // This may break it
+        while(!mazeFinished){
+            for(let i = 0; i <=orderedVisitedNodes.length; i++){
+                if(i === orderedVisitedNodes.length){
+                    setTimeout(() => {
+                        this.animateShortestPath(orderedShortestPath);
+                    }, 5 * i);
+                    return;
+                }
                 setTimeout(() => {
-                    this.animateShortestPath(orderedShortestPath);
+                    const node = orderedVisitedNodes[i];
+                    document.getElementById(`node-${node.row}-${node.col}`).className = 'node node-visited';
                 }, 5 * i);
-                return;
             }
-            setTimeout(() => {
-                const node = orderedVisitedNodes[i];
-                document.getElementById(`node-${node.row}-${node.col}`).className = 'node node-visited';
-            }, 5 * i);
         }
     }
 
-    //addEventListener('keydown', (event) => {});
     animateShortestPath(orderedShortestPath){
-        for(let i = 0; i < orderedShortestPath.length; i++){
-            setTimeout(() => {
-                const node = orderedShortestPath[i];
-                document.getElementById(`node-${node.row}-${node.col}`).className = 'node node-shortest-path';
-            }, 40 *i);
+        // This may break it
+        while(!mazeFinished){
+            for(let i = 0; i < orderedShortestPath.length; i++){
+                setTimeout(() => {
+                    const node = orderedShortestPath[i];
+                    document.getElementById(`node-${node.row}-${node.col}`).className = 'node node-shortest-path';
+                }, 40 *i);
+            }
         }
     }
     initiateRecursiveDivision(){
@@ -220,6 +226,7 @@ export default class PathFinder extends Component{
         }
         this.setState({grid: newGrid});
     }
+
     onkeydown = (event) => { 
         // allows user to draw path once maze is drawn
         var keyPressed = event.key;
@@ -262,26 +269,30 @@ export default class PathFinder extends Component{
 
     confettiCheck(node){
         if(node.row === 49 && node.col === 17){
+            mazeFinished = true;
             alert('You Win!');
         }
     } 
+    
     checkToDraw(drawnNode, grid, keyPressed){
         const {col, row} = drawnNode;
         // I programmed this kinda funky, it probably has to do with the row/column order
-        if(keyPressed === 'w' && drawnNode.col > 0){
-            // check that it makes sense to draw up
-            let checkNodeVar = col - 1;
+        if((keyPressed === 'w' && drawnNode.col > 0) || (keyPressed === 's' && drawnNode.col < numCols - 1)){
+            // check that it makes sense to draw up or down
+            if(keyPressed === 'w') let checkNodeVar = col - 1;
+            else let checkNodeVar = col + 1;
             let node = grid[drawnNode.row][checkNodeVar];
-            var check = (drawnNode.col > 0 && !node.isWall);
+            let check = (drawnNode.col > 0 && !node.isWall);
             if(check){
                 document.getElementById(`node-${node.row}-${node.col}`).className = 'node node-chosen';
                 drawnNode.isDrawn = false;
                 node.isDrawn = true;
                 this.confettiCheck(node);
             } 
-        } else if(keyPressed === 'a' && drawnNode.row > 0){
-            // check that can draw left
-            let checkNodeVar = row - 1;
+        } else if((keyPressed === 'a' && drawnNode.row > 0) || (keyPressed === 'd' && drawnNode.row < numRows - 1)){
+            // check that can draw left or right
+            if(keyPressed === 'a') let checkNodeVar = row - 1;
+            else let checkNodeVar = row + 1;
             let node = grid[checkNodeVar][drawnNode.col];
             let check = (drawnNode.row > 0 && !node.isWall);
             if(check){
@@ -290,31 +301,7 @@ export default class PathFinder extends Component{
                 node.isDrawn = true;
                 this.confettiCheck(node);
             } 
-        } else if(keyPressed === 'd' && drawnNode.row < numRows - 1){
-            // check that it can be drawn right
-            let checkNodeVar = row + 1;
-            let node = grid[checkNodeVar][drawnNode.col];
-            let check = (!node.isWall);
-            if(check){
-                document.getElementById(`node-${node.row}-${node.col}`).className = 'node node-chosen';
-                drawnNode.isDrawn = false;
-                node.isDrawn = true;
-                this.confettiCheck(node);
-            } 
-        } else {
-            // check that it can be drawn down
-            if(drawnNode.col < numCols - 1){
-                let checkNodeVar = col + 1;
-                let node = grid[drawnNode.row][checkNodeVar];
-                let check = (!node.isWall);
-                if(check){
-                    document.getElementById(`node-${node.row}-${node.col}`).className = 'node node-chosen';
-                    drawnNode.isDrawn = false;
-                    node.isDrawn = true;
-                    this.confettiCheck(node);
-                }
-            } 
-        }   
+        }   else {}
     }
     
     toggleInstructions(){
@@ -342,10 +329,10 @@ export default class PathFinder extends Component{
                 <div id='instructions'>
                     <button className='close' onClick={() => this.toggleInstructions()}>Close</button>
                     <h3>What is Maze Run?</h3><p>This is a pathfinder project that includes a few features along with a maze game.</p>
-                    <h3>Pathfinding</h3><p>To begin pathfinding, click on the grid to place your path beginning and end. Once you have placed the beginning and end, select a search algorithm to find the path.</p>
-                    <h3>Add Walls</h3><p>You can place walls that the path will have to go around by clicking and dragging around the grid. Walls can be placed after the beginning and end nodes have been chosen.</p>
-                    <h3>Mazes</h3><p>To build on the wall concept, you can click Draw Maze to draw a maze and find a path within the maze. You can edit the maze walls by click and drag as well.</p>
-                    <h3>Maze Run</h3><p>Finally, you can attempt to maneuver through the maze using ‘w’ to move up, ’a’ to move left, ’s’ to move down, and ‘d’ to move right before time runs out. You can only maneuver, if a maze has been drawn.</p>
+                    <h3>Pathfinding</h3><p>Click on the grid to place your path beginning and end. Select a search algorithm to find the path.</p>
+                    <h3>Add Walls</h3><p>Place walls that the path will have to go around by clicking and dragging the grid. Walls can be added after the beginning and end nodes have been chosen.</p>
+                    <h3>Mazes</h3><p>Click Draw Maze to draw a maze and find a path within the maze. You can remove walls by clicking them.</p>
+                    <h3>Maze Run</h3><p>Finally, maneuver through the maze before time runs out. W, A, S and D represent up, left, down and right, respectively. Maneuver only if a maze has been drawn.</p>
                 </div>
                 <div className="grid">
                     {grid.map((row, rowIdx) => {
