@@ -1,0 +1,124 @@
+.grid {
+    display: grid;
+    grid-template-rows: repeat(18, 25px);
+    grid-template-columns: repeat(50, 25px);
+    margin: 8% 5%;
+}
+
+.button, .searchButton {
+    background-color: #FD5200; 
+    float: right;
+    color: white;
+    padding: 0 1%;
+    border: none;
+    text-align: center;
+    cursor: pointer;
+    font-size: 16px;
+}
+.searchButton{
+    padding: 2% 4%;
+}
+.headerButton {
+    background-color: #FD5200; 
+    float: left;
+    color: white;
+    padding: 0 1%;
+    border: none;
+    text-align: center;
+    cursor: pointer;
+    font-size: 32px;
+}
+
+.button:hover, .button:focus, .searchButton:hover, .searchButton:focus, .headerButton:hover, .headerButton:focus{
+    color: #FF8247;
+}
+
+.dropdown{
+    float: right;
+    position: relative;
+    margin-top: auto;
+}
+
+/* Hide Search Content by default */
+.searches{
+    display: none;
+    position: fixed;
+    top: 10%;
+    left: 15/16fr;
+    background-color: #FF8247;
+    min-width: auto;
+    overflow: auto;
+    font-size: 16px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    right: 0;
+    z-index: 1;
+}
+
+/* Links in search dropdown */
+.searches a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.searches a:hover{
+    color: #2980B9;
+}
+
+.show{
+    display: inline-block;
+}
+
+.header{
+    width: 95%;
+    background-color: #FD5200;
+    color: white;
+    border: 50px solid #FD5200;
+}
+
+#instructions, .showtime{
+    display: table;
+    position: absolute;
+    z-index: 3;
+    background-color: white;
+    text-align: center;
+    width: 50%;
+    height: 70%;
+    border: 2px solid #0B1D51;
+    border-radius: 3px;
+    float: right;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+.showtime{
+    display: none;
+}
+.showWinner{
+    display:block;
+}
+.showInstructions{
+    visibility: collapse;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.close{
+    display: table-cell;
+    border: none;
+    text-align: center;
+    cursor: pointer;
+    background-color: #1D4CD7;
+    padding: 0 4%;
+}
+.close:hover {
+    background-color: #2980B9;
+}
+  
+  
