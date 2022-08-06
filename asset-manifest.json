@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/Maze-Path/static/css/main.58b528fa.css",
-    "main.js": "/Maze-Path/static/js/main.659f6a52.js",
+    "main.css": "/Maze-Path/static/css/main.1c55baca.css",
+    "main.js": "/Maze-Path/static/js/main.7ded8303.js",
     "static/js/787.23d7d9c6.chunk.js": "/Maze-Path/static/js/787.23d7d9c6.chunk.js",
     "index.html": "/Maze-Path/index.html",
-    "main.58b528fa.css.map": "/Maze-Path/static/css/main.58b528fa.css.map",
-    "main.659f6a52.js.map": "/Maze-Path/static/js/main.659f6a52.js.map",
+    "main.1c55baca.css.map": "/Maze-Path/static/css/main.1c55baca.css.map",
+    "main.7ded8303.js.map": "/Maze-Path/static/js/main.7ded8303.js.map",
     "787.23d7d9c6.chunk.js.map": "/Maze-Path/static/js/787.23d7d9c6.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.58b528fa.css",
-    "static/js/main.659f6a52.js"
+    "static/css/main.1c55baca.css",
+    "static/js/main.7ded8303.js"
   ]
 }
